@@ -103,7 +103,7 @@
       <!-- RECUADRO 2 -->
        
        <!-- Mitad video - mitad foto -->
-       <<div class="box" style="width:%; text-align:center;">
+       <div class="box" style="width:%; text-align:center;">
 
       <video src="tocadiscos.mp4"
              autoplay loop muted
