@@ -65,7 +65,7 @@
           <input class="code-input" id="codeInput" placeholder="Ingresa el código" aria-label="Código" />
           <button class="btn" id="checkBtn">Enviar</button>
         </div>
-        <div class="hint">Pista: Es una palabra corta y romántica.</div>
+        <div class="hint">Pista: Es una fecha muy importante para los dos.</div>
       </div>
 
       <!-- Carousel oculto inicialmente -->
