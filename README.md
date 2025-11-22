@@ -1,4 +1,4 @@
-# Inicio-de-todo
+# Inicio_de_todo
 <!doctype html>
 <html lang="es">
 <head>
@@ -94,7 +94,7 @@
 
   <script>
     // Valor del código correcto: cámbialo aquí según quieras
-    const SECRET_CODE = 'AMOR'; // <- editar aquí si quieres otro código (no distingue mayúsculas/minusculas)
+    const SECRET_CODE = '23/11/2024'; // <- editar aquí si quieres otro código (no distingue mayúsculas/minusculas)
 
     const openBtn = document.getElementById('openBtn');
     const codeArea = document.getElementById('codeArea');
