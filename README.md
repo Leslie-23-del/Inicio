@@ -109,7 +109,7 @@
              autoplay loop muted
              style="
                width:100%;
-               max-height:120px;   /* CONTROL DEL LARGO */
+               max-height:150px;   /* CONTROL DEL LARGO */
                border-radius:12px;
                object-fit:contain;
                background:black;">
