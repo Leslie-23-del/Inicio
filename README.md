@@ -95,7 +95,7 @@
            alt="Imagen sorpresa"
            style="
              width:100%;
-             max-height:170px;
+             max-height:220px;
              object-fit:contain;
              border-radius:12px;">
       </div>
