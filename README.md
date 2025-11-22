@@ -97,7 +97,7 @@
        <div style="display:flex; width:50%; gap:20px;justify-content:center;align-items:center;">
         <video src="tocadiscos.mp4" autoplay loop muted style="width:50%; height:auto;border-radius:12px;object-fit:contain;"></video>
 
-      <audio src="cancion.mp3" autoplay loop></audio>
+      <audio src="canción.mp3" autoplay loop></audio>
      </div>
 
     </div>
