@@ -53,8 +53,7 @@
 <body>
   <main class="stage">
     <section class="intro" id="intro">
-      <!-- Imagen de Snoopy con corazón (reemplaza src con tu imagen) -->
-      <img class="heart-svg" src="/mnt/data/Snoopy Valentines Clipart.jpg" alt="Snoopy con corazón" />
+      <img class="heart-svg" src="Snoppy.png" alt="Snoopy con corazón" />
 
 
       <h1>Tienes un mensaje 💌</h1>
