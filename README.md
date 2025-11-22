@@ -93,7 +93,6 @@
       
       <!-- RECUADRO 2 -->
       <div class="box">
-       <h2>🎵 Snoopy Music</h2>
        
        <!-- Mitad video - mitad foto -->
        <div style="display:flex; width:100%; gap:10px;">
