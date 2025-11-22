@@ -95,7 +95,7 @@
       <div class="box">
        
        <!-- Mitad video - mitad foto -->
-       <div style="display:flex; width:100%; gap:120px;">
+       <div style="display:flex; width:50%; gap:120px;">
         <video src="tocadiscos.mp4" autoplay loop muted style="width:50%; border-radius:12px; object-fit:cover;"></video>
 
         <img src="foto.png" alt="Tu foto"
