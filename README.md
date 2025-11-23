@@ -73,20 +73,6 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
   clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
   background:#e64a6b;
 }
-
-/* BUZÓN */
-.buzon-container{position:relative;width:300px;height:200px;margin:20px auto;text-align:center;}
-.buzon{width:100%; height:100%; background:#e64a6b; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:flex-start; cursor:pointer; position:relative; overflow:hidden;}
-.buzon h3{color:white; font-size:22px; margin:10px 0;}
-.tarjeta-cerrada{width:100px; height:60px; background:#fff0f2; border:2px dashed #fff; border-radius:6px; margin-top:20px; cursor:pointer; transition:transform 0.7s;}
-.tarjeta-abierta{position:absolute; top:50px; left:50%; transform:translateX(-50%) scale(0); width:320px; height:160px; display:flex; border-radius:12px; overflow:hidden; box-shadow:0 8px 20px rgba(0,0,0,0.2); transition:transform 0.7s;}
-.tarjeta-abierta .lado{width:50%; height:100%; display:flex; justify-content:center; align-items:center;}
-.tarjeta-abierta .lado.foto img{width:100%; height:100%; object-fit:cover;}
-.tarjeta-abierta .lado.texto{background:#fff; padding:10px; font-size:14px; text-align:center;}
-
-/* BOTÓN VOLVER */
-.backBtn{display:flex; align-items:center; gap:6px; background-color:#f8c8d8; color:#fff; border:none; padding:6px 12px; border-radius:8px; font-size:14px; cursor:pointer; margin:20px auto;}
-.backBtn span{display:inline-block; transform:rotate(180deg); font-weight:bold; font-size:16px;}
 </style>
 </head>
 <body>
@@ -130,23 +116,31 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
     <div class="play-icon" style="width:30px; height:30px; background:#e64a6b; clip-path: polygon(0 0, 100% 50%, 0 100%); margin-bottom:8px;"></div>
     <audio src="lala.mp3" controls style="width:90%; height:30px;"></audio>
   </div>
-  <button class="backBtn"><span>&#10148;</span> Volver</button>
+  <button class="backBtn" style="display:flex; align-items:center; gap:6px; background-color:#f8c8d8; color:#fff; border:none; padding:6px 12px; border-radius:8px; font-size:14px; cursor:pointer; margin:20px auto;">
+    <span style="display:inline-block; transform:rotate(180deg); font-weight:bold; font-size:16px;">&#10148;</span> Volver
+  </button>
 </div>
 
-<!-- Página sorpresa carta con buzón -->
+<!-- Página sorpresa carta (Buzón) -->
 <div class="surprise" id="surpriseCarta" style="display:none;">
-  <div class="buzon-container">
-    <div class="buzon" id="buzon">
-      <h3>BUZÓN</h3>
-      <div class="tarjeta-cerrada" id="tarjetaCerrada"></div>
+  <div style="display:flex; justify-content:center; align-items:center; flex-direction:column; position:relative; width:100%; height:100%;">
+    <div class="buzon-container" style="position:relative; width:300px; height:250px;">
+      <div class="buzon" id="buzon" style="width:100%; height:100%; background:#e64a6b; border-radius:18px; display:flex; justify-content:center; align-items:flex-start; flex-direction:column; cursor:pointer; position:relative; overflow:hidden;">
+        <h2 style="color:white; text-align:center; margin-top:10px;">BUZÓN</h2>
+        <div class="tarjeta-cerrada" id="tarjetaCerrada" style="width:100px; height:60px; background:#fff0f2; border:2px dashed #fff; border-radius:8px; margin:auto; margin-top:20px; cursor:pointer;"></div>
+      </div>
+      <div class="tarjeta-abierta" id="tarjetaAbierta" style="position:absolute; top:20px; left:50%; transform:translateX(-50%) scale(0); width:350px; height:180px; display:flex; border-radius:12px; overflow:hidden; box-shadow:0 10px 25px rgba(0,0,0,0.25); transition:transform 0.7s;">
+        <div class="lado foto" style="width:50%; height:100%; background:#fff0f2;"><img src="foto.png" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="lado texto" style="width:50%; height:100%; background:#fff; display:flex; align-items:center; justify-content:center; padding:10px; font-size:14px;">
+          <p>¡Aquí está tu mensaje secreto!</p>
+        </div>
+        <button onclick="cerrarTarjeta()" style="position:absolute; bottom:5px; right:5px; padding:4px 8px; background:#e64a6b; color:white; border:none; border-radius:6px; cursor:pointer;">Cerrar</button>
+      </div>
     </div>
-    <div class="tarjeta-abierta" id="tarjetaAbierta">
-      <div class="lado foto"><img src="foto.png"></div>
-      <div class="lado texto"><p>¡Aquí está tu mensaje secreto!</p></div>
-      <button onclick="cerrarTarjeta()" style="position:absolute; bottom:5px; right:5px; padding:4px 8px; background:#e64a6b; color:white; border:none; border-radius:6px; cursor:pointer;">Cerrar</button>
-    </div>
+    <button class="backBtn" style="display:flex; align-items:center; gap:6px; background-color:#f8c8d8; color:#fff; border:none; padding:6px 12px; border-radius:8px; font-size:14px; cursor:pointer; margin:20px auto;">
+      <span style="display:inline-block; transform:rotate(180deg); font-weight:bold; font-size:16px;">&#10148;</span> Volver
+    </button>
   </div>
-  <button class="backBtn"><span>&#10148;</span> Volver</button>
 </div>
 
 </main>
@@ -163,10 +157,10 @@ const track = document.getElementById('track');
 const surpriseSonido = document.getElementById('surpriseSonido');
 const surpriseCarta = document.getElementById('surpriseCarta');
 
-// Tarjeta buzón
-const tarjetaAbierta = document.getElementById('tarjetaAbierta');
-const tarjetaCerrada = document.getElementById('tarjetaCerrada');
+// Buzón y tarjeta
 const buzon = document.getElementById('buzon');
+const tarjetaCerrada = document.getElementById('tarjetaCerrada');
+const tarjetaAbierta = document.getElementById('tarjetaAbierta');
 
 openBtn.addEventListener('click', ()=>{
   openBtn.style.display='none';
@@ -224,13 +218,13 @@ document.querySelectorAll('.backBtn').forEach(btn => {
 });
 
 // Funciones buzón
-buzon.addEventListener('click', ()=>{
-  tarjetaAbierta.style.transform = 'translateY(-220px) scale(1)';
-  tarjetaCerrada.style.transform = 'translateY(-300px) scale(0)';
+buzon.addEventListener('click', ()=> {
+  tarjetaAbierta.style.transform = 'translateX(-50%) scale(1)';
+  tarjetaCerrada.style.transform = 'translateY(-250px) scale(0)';
 });
 
 function cerrarTarjeta() {
-  tarjetaAbierta.style.transform = 'translateY(0) scale(0)';
+  tarjetaAbierta.style.transform = 'translateX(-50%) scale(0)';
   tarjetaCerrada.style.transform = 'translateY(0) scale(1)';
 }
 </script>
