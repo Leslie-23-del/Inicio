@@ -47,14 +47,42 @@
 
     /* small */
     @media (max-width:600px){.track{padding:12px}.card{min-width:200px}}
+
+    /* Reproductor estilo dibujo */
+    .player-dibujo {
+      width:10cm;
+      height:5cm;
+      background:#fff0f2;
+      border:3px dashed #e64a6b;
+      border-radius:12px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      box-shadow:0 6px 16px rgba(230,74,107,0.3);
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      z-index:20;
+    }
+    .player-dibujo audio {
+      width:80%;
+      border-radius:8px;
+    }
+    .play-icon {
+      width:40px;
+      height:40px;
+      margin-bottom:10px;
+      clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+      background:#e64a6b;
+    }
   </style>
 </head>
 <body>
   <main class="stage">
     <section class="intro" id="intro">
       <img class="heart-svg" src="Snoppy.png" alt="Snoopy con corazón" />
-
-
       <h1>Tienes un mensaje 💌</h1>
       <p class="lead">Haz clic en abrir y sigue las pistas para ver la sorpresa.</p>
 
@@ -71,7 +99,7 @@
       <div class="carousel-wrap" id="carouselWrap">
         <div class="carousel" aria-hidden="false">
           <div class="track" id="track">
-            <<div class="card" data-index="1" style="background:white;padding:10px"><img src="Música snoppy.png" alt="Música snoppy" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:10px"></div>
+            <div class="card" data-index="1" style="background:white;padding:10px"><img src="Música snoppy.png" alt="Música snoppy" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:10px"></div>
             <div class="card" data-index="2" style="background:white;padding:10px"><img src="carta de snoppy.png" alt="carta de snoppy" style="max-width:100%;max-height:100%;object-fit:contain;border-radius:10px"></div>
           </div>
         </div>
@@ -80,71 +108,33 @@
 
     <!-- Página sorpresa que desliza desde abajo -->
     <div class="surprise" id="surprise">
-     <div style="
-    display:flex;
-    gap:15px;
-    justify-content:center;
-    align-items:stretch;
-    flex-wrap:wrap;
-    max-width:600px;
-    margin:auto;position:relative;z-index:10;">
+      <div style="display:flex; gap:15px; justify-content:center; align-items:stretch; flex-wrap:wrap; max-width:600px; margin:auto; position:relative; z-index:10;">
      
-      <!-- RECUADRO 1 -->
-      <div class="box" style="width:45%; text-align:center;min-height:500px;">
-      <img src="foto.png"
-           alt="Imagen sorpresa"
-           style="
-             width:100%;
-             height:500px;
-             object-fit:cover;
-             border-radius:12px;position:relative;z-index:10;">
-      </div>
+        <!-- RECUADRO 1: Foto -->
+        <div class="box" style="width:45%; text-align:center; min-height:500px;">
+          <img src="foto.png" alt="Imagen sorpresa"
+               style="width:100%; height:500px; object-fit:cover; border-radius:12px; position:relative; z-index:10;">
+        </div>
       
-      <!-- RECUADRO 2 -->
-       
-       <!-- Mitad video - mitad foto -->
-       <div class="box" style="width:%; text-align:center;min-height:500px;">
+        <!-- RECUADRO 2: Video -->
+        <div class="box" style="width:45%; text-align:center; min-height:500px;">
+          <video src="tocadiscos.mp4" autoplay loop muted
+                 style="width:100%; height:500px; border-radius:12px; object-fit:cover; background:black; position:relative; z-index:10;">
+          </video>
+        </div>
 
-      <video src="tocadiscos.mp4"
-             autoplay loop muted
-             style="
-               width:100%;
-               height:500px;   /* CONTROL DEL LARGO */
-               border-radius:12px;
-               object-fit:cover;
-               background:black;position:relative;z-index:10;">
-      </video>
-    </div>
-    
-      <!-- RECUADRO 3: reproductor con estilo dibujo -->
-      <div style="
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  width:200px;
-  background:#fff0f2;
-  border:2px dashed #e64a6b;
-  border-radius:12px;
-  padding:12px;
-  text-align:center;
-  box-shadow:0 6px 16px rgba(230,74,107,0.3);
-  z-index:20;">
-         <audio src="lala.mp3" controls style="width:100%; border-radius:8px;"></audio>
+        <!-- REPRODUCTOR PEQUEÑO FLOTANTE -->
+        <div class="player-dibujo">
+          <div class="play-icon"></div>
+          <audio src="lala.mp3" controls></audio>
+        </div>
+
       </div>
-
-      
-     </div>
-
     </div>
-   </div>
-
-  
   </main>
-  
+
   <script>
-    // Valor del código correcto: cámbialo aquí según quieras
-    const SECRET_CODE = '23/11/2024'; // <- editar aquí si quieres otro código (no distingue mayúsculas/minusculas)
+    const SECRET_CODE = '23/11/2024';
 
     const openBtn = document.getElementById('openBtn');
     const codeArea = document.getElementById('codeArea');
@@ -163,14 +153,11 @@
     checkBtn.addEventListener('click', ()=>{
       const val = (codeInput.value || '').trim().toUpperCase();
       if(val === SECRET_CODE.toUpperCase()){
-        // mostrar carousel
         codeArea.style.display='none';
         carouselWrap.style.display='block';
-        // opcional: pausa la animación autom. cuando el usuario mueve el ratón
         track.addEventListener('mouseenter', ()=> track.style.animationPlayState='paused');
         track.addEventListener('mouseleave', ()=> track.style.animationPlayState='running');
       } else {
-        // pequeño efecto de error
         codeInput.classList.add('squash');
         setTimeout(()=> codeInput.classList.remove('squash'),400);
         codeInput.value='';
@@ -178,30 +165,18 @@
       }
     });
 
-    // Al pulsar Enter en el campo
     codeInput.addEventListener('keyup',(e)=>{ if(e.key === 'Enter') checkBtn.click(); });
 
-    // Al hacer clic en cualquier tarjeta: efecto 'aplastar' y mostrar sorpresa
     document.querySelectorAll('.card').forEach(card => {
       card.addEventListener('click', ()=>{
         card.style.transformOrigin = 'center bottom';
-        card.animate([
-          { transform: 'scale(1)' },
-          { transform: 'scale(1.05,0.6)' },
-          { transform: 'scale(1)' }
-        ],{ duration:450, easing:'ease' });
-
-        // después de efecto, desliza la página sorpresa
+        card.animate([{ transform: 'scale(1)' },{ transform: 'scale(1.05,0.6)' },{ transform: 'scale(1)' }],{ duration:450, easing:'ease' });
         setTimeout(()=>{
           surprise.classList.add('show');
-          // detén la animación del track
           track.style.animationPlayState='paused';
         },460);
       });
     });
-
-    // Para probar rápidamente en escritorio: permite avanzar a sorpresa con tecla S
-    document.addEventListener('keydown',(e)=>{ if(e.key.toLowerCase()==='s'){ surprise.classList.add('show'); } });
   </script>
 </body>
 </html>
