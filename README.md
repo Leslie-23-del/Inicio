@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8" />
@@ -123,11 +124,11 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
 
   <!-- REPRODUCTOR DE MUSICA DEBAJO -->
   <div class="player-dibujo" style="
-    width: 200px;       /* Ancho del recuadro */
-    height: 100px;      /* Alto del recuadro */
-    margin: 20px auto;  /* Centrado debajo de las imágenes */
+    width: 200px;
+    height: 100px;
+    margin: 20px auto;
     padding: 10px;
-    border: 2px dashed #e64a6b; /* Estilo tipo dibujo */
+    border: 2px dashed #e64a6b;
     border-radius: 12px;
     display: flex;
     flex-direction: column;
@@ -141,17 +142,17 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
         clip-path: polygon(0 0, 100% 50%, 0 100%);
         margin-bottom: 8px;"></div>
     <audio src="lala.mp3" controls style="
-        width: 90%;       /* Reproductor más pequeño */
+        width: 90%;
         height: 30px;
     "></audio>
   </div>
   
-  <!-- BOTÓN DE REGRESO -->
+  <!-- BOTÓN DE REGRESO CORREGIDO -->
   <button onclick="document.getElementById('intro').scrollIntoView({behavior: 'smooth'});" style="
     display: flex;
     align-items: center;
     gap: 6px;
-    background-color: #f8c8d8; /* rosa pastel */
+    background-color: #f8c8d8;
     color: #fff;
     border: none;
     padding: 6px 12px;
@@ -160,13 +161,7 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
     cursor: pointer;
     margin: 20px auto;
 ">
-    <!-- Flecha pequeña -->
-    <span style="
-        display: inline-block;
-        transform: rotate(180deg); /* flecha apuntando a la izquierda */
-        font-weight: bold;
-        font-size: 16px;
-    ">&#10148;</span>
+    <span style="display: inline-block; transform: rotate(180deg); font-weight: bold; font-size: 16px;">&#10148;</span>
     Volver
 </button>
 </div>
