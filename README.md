@@ -130,7 +130,7 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
 </section>
 
 <!-- CARTA DESLIZANTE -->
-
+<div class="carta" id="cartaMsg">
   <p style="color:#6b6b6b; font-size:15px">
     Hoy hace un año, un lazo inexistente a nuestra vista —pero tan notorio para nuestros corazones— nos unió.
     No por motivos ajenos, ni por promesas falsas, ni por sentimientos vacíos, sino por lo más puro que nació ese día entre los dos: esa conexión que siempre ha estado allí.
