@@ -102,7 +102,7 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
 </div>
 </section>
 
-<!-- Página sorpresa (sonido) -->
+<!-- Página sorpresa (oculta hasta hacer clic en sonido) -->
 <div class="surprise" id="surprise" style="display:none;">
   <div style="display:flex; gap:15px; justify-content:center; align-items:stretch; flex-wrap:wrap; max-width:600px; margin:auto; position:relative; z-index:10;">
     <!-- RECUADRO 1: Foto -->
@@ -178,65 +178,14 @@ document.querySelectorAll('.card').forEach(card => {
         carouselWrap.style.display = 'none';
         track.style.animationPlayState='paused';
       },460);
-    } else if(card.dataset.index === "2"){ // tarjeta carta
-      // Recuadro carta abierto
-      const cartaBox = document.createElement('div');
-      cartaBox.style.display = 'flex';
-      cartaBox.style.gap = '10px';
-      cartaBox.style.width = '90%';
-      cartaBox.style.maxWidth = '600px';
-      cartaBox.style.margin = '20px auto';
-      cartaBox.style.border = '2px dashed #e64a6b';
-      cartaBox.style.borderRadius = '12px';
-      cartaBox.style.padding = '10px';
-      cartaBox.style.background = '#fff0f2';
-      cartaBox.style.boxShadow = '0 6px 16px rgba(230,74,107,0.3)';
-
-      const ladoFoto = document.createElement('div');
-      ladoFoto.style.flex = '1';
-      const img = document.createElement('img');
-      img.src = 'foto.png';
-      img.style.width = '100%';
-      img.style.borderRadius = '10px';
-      ladoFoto.appendChild(img);
-
-      const ladoMensaje = document.createElement('div');
-      ladoMensaje.style.flex = '1';
-      ladoMensaje.style.display = 'flex';
-      ladoMensaje.style.alignItems = 'center';
-      ladoMensaje.style.justifyContent = 'center';
-      ladoMensaje.style.fontSize = '16px';
-      ladoMensaje.style.color = '#e64a6b';
-      ladoMensaje.innerText = '¡Feliz sorpresa! 💌';
-
-      cartaBox.appendChild(ladoFoto);
-      cartaBox.appendChild(ladoMensaje);
-
-      document.body.appendChild(cartaBox);
-      carouselWrap.style.display = 'none';
-
-      const backCarta = document.createElement('button');
-      backCarta.innerText = 'Volver';
-      backCarta.style.display = 'block';
-      backCarta.style.margin = '10px auto';
-      backCarta.style.backgroundColor = '#f8c8d8';
-      backCarta.style.color = '#fff';
-      backCarta.style.border = 'none';
-      backCarta.style.borderRadius = '8px';
-      backCarta.style.padding = '6px 12px';
-      backCarta.style.cursor = 'pointer';
-      backCarta.addEventListener('click', ()=>{
-        cartaBox.remove();
-        backCarta.remove();
-        carouselWrap.style.display = 'block';
-        track.style.animationPlayState='running';
-      });
-      document.body.appendChild(backCarta);
+    } else {
+      // tarjeta carta: no hace nada
+      alert("Aquí irá otra sorpresa más adelante");
     }
   });
 });
 
-// Botón volver sonido
+// Botón volver
 backBtn.addEventListener('click', ()=>{
   surprise.style.display = 'none';
   carouselWrap.style.display = 'block';
