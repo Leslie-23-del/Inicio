@@ -84,34 +84,34 @@
     display:flex;
     gap:15px;
     justify-content:center;
-    align-items:center;
+    align-items:stretch;
     flex-wrap:wrap;
     max-width:600px;
     margin:auto;">
      
       <!-- RECUADRO 1 -->
-      <div class="box" style="width:45%; text-align:center;">
+      <div class="box" style="width:45%; text-align:center;min-height:250px;">
       <img src="foto.png"
            alt="Imagen sorpresa"
            style="
              width:100%;
-             max-height:220px;
-             object-fit:contain;
+             height:100%;
+             object-fit:cover;
              border-radius:12px;">
       </div>
       
       <!-- RECUADRO 2 -->
        
        <!-- Mitad video - mitad foto -->
-       <div class="box" style="width:%; text-align:center;">
+       <div class="box" style="width:%; text-align:center;min-height:250px;">
 
       <video src="tocadiscos.mp4"
              autoplay loop muted
              style="
                width:100%;
-               max-height:150px;   /* CONTROL DEL LARGO */
+               height:100%;   /* CONTROL DEL LARGO */
                border-radius:12px;
-               object-fit:contain;
+               object-fit:cover;
                background:black;">
       </video>
 
