@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8" />
@@ -147,8 +146,13 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
     "></audio>
   </div>
   
-  <!-- BOTÓN DE REGRESO CORREGIDO -->
-  <button onclick="document.getElementById('intro').scrollIntoView({behavior: 'smooth'});" style="
+  <!-- BOTÓN DE REGRESO INTEGRADO -->
+  <button onclick="
+    surprise.classList.remove('show');
+    carouselWrap.style.display = 'block';
+    track.style.animationPlayState = 'running';
+    carouselWrap.scrollIntoView({behavior:'smooth'});
+  " style="
     display: flex;
     align-items: center;
     gap: 6px;
