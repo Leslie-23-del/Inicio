@@ -50,10 +50,10 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
 
 /* Reproductor estilo dibujo debajo */
 .player-dibujo {
-  width:200px;
-  height:100px;
+  width:10cm;
+  height:5cm;
   background:#fff0f2;
-  border:2px dashed #e64a6b;
+  border:3px dashed #e64a6b;
   border-radius:12px;
   display:flex;
   flex-direction:column;
@@ -102,27 +102,29 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
 </div>
 </section>
 
-<!-- Página sorpresa sonido -->
-<div class="surprise" id="surprise">
-  <div class="sonido-content" style="display:none;">
-    <div style="display:flex; gap:15px; justify-content:center; align-items:stretch; flex-wrap:wrap; max-width:600px; margin:auto; position:relative; z-index:10;">
-      <div class="box" style="width:45%; text-align:center;min-height:400px;">
-        <img src="foto.png" alt="Imagen sorpresa"
-             style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; position:relative; z-index:10;">
-      </div>
-      <div class="box" style="width:45%; text-align:center; min-height:400px;">
-        <video src="tocadiscos.mp4" autoplay loop muted
-               style="width:100%; height:400px; border-radius:12px; object-fit:cover; background:black; position:relative; z-index:10;">
-        </video>
-      </div>
+<!-- Página sorpresa (sonido) -->
+<div class="surprise" id="surprise" style="display:none;">
+  <div style="display:flex; gap:15px; justify-content:center; align-items:stretch; flex-wrap:wrap; max-width:600px; margin:auto; position:relative; z-index:10;">
+    <!-- RECUADRO 1: Foto -->
+    <div class="box" style="width:45%; text-align:center;min-height:400px;">
+      <img src="foto.png" alt="Imagen sorpresa"
+           style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; position:relative; z-index:10;">
     </div>
-
-    <div class="player-dibujo">
-      <div class="play-icon"></div>
-      <audio src="lala.mp3" controls></audio>
+  
+    <!-- RECUADRO 2: Video -->
+    <div class="box" style="width:45%; text-align:center; min-height:400px;">
+      <video src="tocadiscos.mp4" autoplay loop muted
+             style="width:100%; height:400px; border-radius:12px; object-fit:cover; background:black; position:relative; z-index:10;">
+      </video>
     </div>
   </div>
 
+  <!-- REPRODUCTOR DE MUSICA DEBAJO -->
+  <div class="player-dibujo" style="width:200px; height:100px; margin:20px auto; padding:10px; border:2px dashed #e64a6b; border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; background:#fff0f2;">
+    <div class="play-icon" style="width:30px; height:30px; background:#e64a6b; clip-path: polygon(0 0, 100% 50%, 0 100%); margin-bottom:8px;"></div>
+    <audio src="lala.mp3" controls style="width:90%; height:30px;"></audio>
+  </div>
+  
   <!-- BOTÓN DE REGRESO -->
   <button id="backBtn" style="display:flex; align-items:center; gap:6px; background-color:#f8c8d8; color:#fff; border:none; padding:6px 12px; border-radius:8px; font-size:14px; cursor:pointer; margin:20px auto;">
     <span style="display:inline-block; transform:rotate(180deg); font-weight:bold; font-size:16px;">&#10148;</span> Volver
@@ -140,7 +142,6 @@ const carouselWrap = document.getElementById('carouselWrap');
 const track = document.getElementById('track');
 const surprise = document.getElementById('surprise');
 const backBtn = document.getElementById('backBtn');
-const sonidoContent = document.querySelector('.sonido-content');
 
 openBtn.addEventListener('click', ()=>{
   openBtn.style.display='none';
@@ -168,23 +169,77 @@ codeInput.addEventListener('keyup',(e)=>{ if(e.key === 'Enter') checkBtn.click()
 // Click en tarjetas
 document.querySelectorAll('.card').forEach(card => {
   card.addEventListener('click', ()=>{
-    if(card.dataset.index === "1"){ // sonido
-      sonidoContent.style.display='block';
-      surprise.style.display='flex';
-      surprise.classList.add('show');
-      carouselWrap.style.display='none';
-      track.style.animationPlayState='paused';
-    } else if(card.dataset.index === "2"){ // carta
-      alert('Aquí puedes agregar la lógica de abrir carta con foto y mensaje.');
+    if(card.dataset.index === "1"){ // tarjeta sonido
+      card.style.transformOrigin = 'center bottom';
+      card.animate([{ transform: 'scale(1)' },{ transform: 'scale(1.05,0.6)' },{ transform: 'scale(1)' }],{ duration:450, easing:'ease' });
+      setTimeout(()=>{
+        surprise.style.display = 'flex';
+        surprise.classList.add('show');
+        carouselWrap.style.display = 'none';
+        track.style.animationPlayState='paused';
+      },460);
+    } else if(card.dataset.index === "2"){ // tarjeta carta
+      // Recuadro carta abierto
+      const cartaBox = document.createElement('div');
+      cartaBox.style.display = 'flex';
+      cartaBox.style.gap = '10px';
+      cartaBox.style.width = '90%';
+      cartaBox.style.maxWidth = '600px';
+      cartaBox.style.margin = '20px auto';
+      cartaBox.style.border = '2px dashed #e64a6b';
+      cartaBox.style.borderRadius = '12px';
+      cartaBox.style.padding = '10px';
+      cartaBox.style.background = '#fff0f2';
+      cartaBox.style.boxShadow = '0 6px 16px rgba(230,74,107,0.3)';
+
+      const ladoFoto = document.createElement('div');
+      ladoFoto.style.flex = '1';
+      const img = document.createElement('img');
+      img.src = 'foto.png';
+      img.style.width = '100%';
+      img.style.borderRadius = '10px';
+      ladoFoto.appendChild(img);
+
+      const ladoMensaje = document.createElement('div');
+      ladoMensaje.style.flex = '1';
+      ladoMensaje.style.display = 'flex';
+      ladoMensaje.style.alignItems = 'center';
+      ladoMensaje.style.justifyContent = 'center';
+      ladoMensaje.style.fontSize = '16px';
+      ladoMensaje.style.color = '#e64a6b';
+      ladoMensaje.innerText = '¡Feliz sorpresa! 💌';
+
+      cartaBox.appendChild(ladoFoto);
+      cartaBox.appendChild(ladoMensaje);
+
+      document.body.appendChild(cartaBox);
+      carouselWrap.style.display = 'none';
+
+      const backCarta = document.createElement('button');
+      backCarta.innerText = 'Volver';
+      backCarta.style.display = 'block';
+      backCarta.style.margin = '10px auto';
+      backCarta.style.backgroundColor = '#f8c8d8';
+      backCarta.style.color = '#fff';
+      backCarta.style.border = 'none';
+      backCarta.style.borderRadius = '8px';
+      backCarta.style.padding = '6px 12px';
+      backCarta.style.cursor = 'pointer';
+      backCarta.addEventListener('click', ()=>{
+        cartaBox.remove();
+        backCarta.remove();
+        carouselWrap.style.display = 'block';
+        track.style.animationPlayState='running';
+      });
+      document.body.appendChild(backCarta);
     }
   });
 });
 
-// Botón volver
+// Botón volver sonido
 backBtn.addEventListener('click', ()=>{
-  sonidoContent.style.display='none';
-  surprise.style.display='none';
-  carouselWrap.style.display='block';
+  surprise.style.display = 'none';
+  carouselWrap.style.display = 'block';
   track.style.animationPlayState='running';
   setTimeout(()=>{carouselWrap.scrollIntoView({behavior:'smooth'});},50);
 });
