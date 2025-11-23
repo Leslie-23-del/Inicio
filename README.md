@@ -147,7 +147,7 @@ button.btn{background:var(--accent);color:white;border:0;padding:12px 20px;borde
   </div>
   
   <!-- BOTÓN DE REGRESO -->
-  <button onclick="window.history.back()" style="
+  <button onclick="document.getElementById('intro').scrollIntoView({behavior: 'smooth'});" style="
     display: flex;
     align-items: center;
     gap: 6px;
