@@ -115,7 +115,7 @@
                background:black;position:relative;z-index:10;">
       </video>
 
-      <audio src="canción.mp3" autoplay loop></audio>
+      <audio src="canción.mp3" controls loop></audio>
      </div>
 
     </div>
